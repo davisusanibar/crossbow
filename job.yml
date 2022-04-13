@@ -1,0 +1,48 @@
+!Job
+target: !Target
+  head: 3f9764eb8cbfe373754b6561f6aba1267a0dbcf4
+  email: unknown
+  branch: ARROW-16185-valgrind-strptime
+  remote: https://github.com/pitrou/arrow.git
+  github_repo: pitrou/arrow
+  version: 8.0.0.dev405
+  no_rc_version: 8.0.0.dev405
+  no_rc_semver_version: 8.0.0-dev405
+tasks:
+  test-fedora-r-clang-sanitizer: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_PRUNE_DEPS: true
+      image: fedora-r-clang-sanitizer
+
+    branch: actions-1843-azure-test-fedora-r-clang-sanitizer
+    commit: 024639bbd6e08769bc62f04399087e74e2951b5a
+  test-ubuntu-18.04-r-sanitizer: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 18.04
+        R_PRUNE_DEPS: true
+      image: ubuntu-r-sanitizer
+
+    branch: actions-1843-azure-test-ubuntu-18.04-r-sanitizer
+    commit: e341f4c80500d63c7678d7d2ce53151f428e5875
+  test-r-linux-valgrind: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        ARROW_R_DEV: 'TRUE'
+        UBUNTU: 18.04
+      image: ubuntu-r-valgrind
+
+    branch: actions-1843-azure-test-r-linux-valgrind
+    commit: 81cbc7e7eab7abd47abebb765151b1407e7f4354
+params: {}
+branch: actions-1843
