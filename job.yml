@@ -1,0 +1,86 @@
+!Job
+target: !Target
+  head: f9c069d9ed8d547231b784a3e37dced06abcb735
+  email: unknown
+  branch: bugfix/ARROW-15604--sporadic-test-failure-with-ot
+  remote: https://github.com/westonpace/arrow.git
+  github_repo: westonpace/arrow
+  version: 8.0.0.dev413
+  no_rc_version: 8.0.0.dev413
+  no_rc_semver_version: 8.0.0-dev413
+tasks:
+  test-fedora-35-cpp: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        FEDORA: 35
+      image: fedora-cpp
+
+    branch: actions-1844-github-test-fedora-35-cpp
+    commit: 0b7eb880500e1848e64807aae8c0ddb7b6286f72
+  test-ubuntu-20.04-cpp-thread-sanitizer: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        # clang-tools and llvm version need to be synchronized so as
+        # to have the right llvm-symbolizer version
+        CLANG_TOOLS: 11
+        LLVM: 11
+        UBUNTU: 20.04
+      image: ubuntu-cpp-thread-sanitizer
+
+    branch: actions-1844-github-test-ubuntu-20.04-cpp-thread-sanitizer
+    commit: 61b9877f472ccb6ff93ef06ea326c1aebd10b1c7
+  test-r-ubuntu-22.04: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 22.04
+        R_PRUNE_DEPS: true
+      image: ubuntu-r-only-r
+
+  # This also has -flto=auto
+    branch: actions-1844-github-test-r-ubuntu-22.04
+    commit: afa74c509f3494bd6f89f3c3633db4d8befe7186
+  test-ubuntu-20.04-cpp-17: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      flags: -e CMAKE_ARGS=-DCMAKE_CXX_STANDARD=17
+      image: ubuntu-cpp
+
+    branch: actions-1844-github-test-ubuntu-20.04-cpp-17
+    commit: 833d9c07c79c100f63058bfd1c83d5a3dbe2b6d7
+  test-ubuntu-20.04-cpp-bundled: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      image: ubuntu-cpp-bundled
+
+    branch: actions-1844-github-test-ubuntu-20.04-cpp-bundled
+    commit: 9bd28fc199219ce71e332bc7cc6b899342591f2b
+  test-ubuntu-20.04-cpp-14: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      flags: -e CMAKE_ARGS=-DCMAKE_CXX_STANDARD=14
+      image: ubuntu-cpp
+    branch: actions-1844-github-test-ubuntu-20.04-cpp-14
+    commit: 4e83e1c29bfffc0a375d61b062c855bf6883cc35
+params: {}
+branch: actions-1844
