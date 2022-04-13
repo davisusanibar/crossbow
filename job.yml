@@ -1,0 +1,28 @@
+!Job
+target: !Target
+  head: 716ece57f70987515a364893f27163ac958b98cb
+  email: unknown
+  branch: sasha_tpch_fix
+  remote: https://github.com/save-buffer/arrow.git
+  github_repo: save-buffer/arrow
+  version: 8.0.0.dev404
+  no_rc_version: 8.0.0.dev404
+  no_rc_semver_version: 8.0.0-dev404
+tasks:
+  test-ubuntu-20.04-cpp-thread-sanitizer: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        # clang-tools and llvm version need to be synchronized so as
+        # to have the right llvm-symbolizer version
+        CLANG_TOOLS: 11
+        LLVM: 11
+        UBUNTU: 20.04
+      image: ubuntu-cpp-thread-sanitizer
+
+    branch: actions-1850-github-test-ubuntu-20.04-cpp-thread-sanitizer
+    commit: 194ad237da081709f5e138bfa871a56ed8784931
+params: {}
+branch: actions-1850
