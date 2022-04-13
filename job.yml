@@ -1,0 +1,22 @@
+!Job
+target: !Target
+  head: ea9d80bddb3d77f4426497d9564b22c16430b834
+  email: unknown
+  branch: feat/fun-diff-warn-once
+  remote: https://github.com/alistaire47/arrow.git
+  github_repo: alistaire47/arrow
+  version: 8.0.0.dev417
+  no_rc_version: 8.0.0.dev417
+  no_rc_semver_version: 8.0.0-dev417
+tasks:
+  test-r-versions: !Task
+    ci: github
+    template: r/github.linux.versions.yml
+    artifacts: []
+    params:
+      MATRIX: ${{ matrix.r_version }}
+
+    branch: actions-1853-github-test-r-versions
+    commit: dc8235232d7fa1004616b03531df41588c00624c
+params: {}
+branch: actions-1853
