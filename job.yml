@@ -1,0 +1,22 @@
+!Job
+target: !Target
+  head: 3f9764eb8cbfe373754b6561f6aba1267a0dbcf4
+  email: unknown
+  branch: ARROW-16185-valgrind-strptime
+  remote: https://github.com/pitrou/arrow.git
+  github_repo: pitrou/arrow
+  version: 8.0.0.dev405
+  no_rc_version: 8.0.0.dev405
+  no_rc_semver_version: 8.0.0-dev405
+tasks:
+  test-conda-cpp-valgrind: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      image: conda-cpp-valgrind
+
+    branch: actions-1841-azure-test-conda-cpp-valgrind
+    commit: 3c315e7bf155dac334eec3bbfc93cbd6f7730476
+params: {}
+branch: actions-1841
