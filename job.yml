@@ -1,0 +1,22 @@
+!Job
+target: !Target
+  head: 975bdd5e7528611bc9d395dda98c9f89b9bf910d
+  email: unknown
+  branch: ARROW-16201
+  remote: https://github.com/jonkeane/arrow.git
+  github_repo: jonkeane/arrow
+  version: 8.0.0.dev429
+  no_rc_version: 8.0.0.dev429
+  no_rc_semver_version: 8.0.0-dev429
+tasks:
+  test-r-versions: !Task
+    ci: github
+    template: r/github.linux.versions.yml
+    artifacts: []
+    params:
+      MATRIX: ${{ matrix.r_version }}
+
+    branch: actions-1860-github-test-r-versions
+    commit: c18de62e4ff63b2fef53bb04c0fd1f17fcfd6069
+params: {}
+branch: actions-1860
