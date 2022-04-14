@@ -1,0 +1,441 @@
+!Job
+target: !Target
+  head: 52fc416eacde6de48f550c297709d396efdef0e8
+  email: unknown
+  branch: ARROW-16198-bump-vcpkg
+  remote: https://github.com/assignUser/arrow.git
+  github_repo: assignUser/arrow
+  version: 8.0.0.dev426
+  no_rc_version: 8.0.0.dev426
+  no_rc_semver_version: 8.0.0-dev426
+tasks:
+  wheel-windows-cp310-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp310-cp310-win_amd64.whl
+    params:
+      python_version: '3.10'
+    branch: actions-1862-github-wheel-windows-cp310-amd64
+    commit: e8e929801b1e3d76cd5d6525fa99b9d91370c267
+  verify-rc-binaries-wheels-macos-10.15-amd64: !Task
+    ci: github
+    template: verify-rc/github.macos.amd64.yml
+    artifacts: []
+    params:
+      github_runner: macos-10.15
+      target: wheels
+
+    branch: actions-1862-github-verify-rc-binaries-wheels-macos-10.15-amd64
+    commit: b6f075761f3d23bf79933209a36966560fe7b6f1
+  wheel-windows-cp37-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp37-cp37m-win_amd64.whl
+    params:
+      python_version: '3.7'
+    branch: actions-1862-github-wheel-windows-cp37-amd64
+    commit: 9049664d227b18b7fd2ea3c9ad68401015cc26c9
+  wheel-manylinux2010-cp37-amd64: !Task
+    ci: github
+    template: python-wheels/github.linux.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+    params:
+      python_version: '3.7'
+      manylinux_version: '2010'
+    branch: actions-1862-github-wheel-manylinux2010-cp37-amd64
+    commit: cc592de4f05f4fd90c388ef239bfadebbabaf321
+  verify-rc-binaries-wheels-linux-ubuntu-22.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: ubuntu
+
+
+  # Separated these tasks from the loop above due to:
+  # - 'binary' verification is not platform dependent
+  # - 'yum' and 'apt' requires docker so we need to run the verification script
+  #   directly on the host
+    branch: actions-1862-github-verify-rc-binaries-wheels-linux-ubuntu-22.04-amd64
+    commit: 110c9c5d00858471acfa6aea2037ada1ecc34e24
+  wheel-macos-high-sierra-cp37-amd64: !Task
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp37-cp37m-macosx_10_13_x86_64.whl
+    params:
+      python_version: '3.7'
+      macos_deployment_target: '10.13'
+      arrow_s3: ON
+    branch: actions-1862-github-wheel-macos-high-sierra-cp37-amd64
+    commit: 7a18fe953e3b99228b75c6d303c707bfd00090fc
+  verify-rc-binaries-wheels-macos-10.15-amd64-conda: !Task
+    ci: github
+    template: verify-rc/github.macos.amd64.yml
+    artifacts: []
+    params:
+      env:
+        USE_CONDA: 1
+      github_runner: macos-10.15
+      target: wheels
+
+  # The github hosted macos-11 runners are in preview only, but should be switched once they are generally available:
+  #   https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
+    branch: actions-1862-github-verify-rc-binaries-wheels-macos-10.15-amd64-conda
+    commit: eb41b7344bc7b08d767eb9113b02fc7b1c967793
+  wheel-macos-mavericks-cp39-amd64: !Task
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp39-cp39-macosx_10_9_x86_64.whl
+    params:
+      python_version: '3.9'
+      macos_deployment_target: '10.9'
+      arrow_s3: OFF
+    branch: actions-1862-github-wheel-macos-mavericks-cp39-amd64
+    commit: b54bf1d83414876e2a3712ab6f2e6a6d882a522d
+  wheel-macos-mavericks-cp310-amd64: !Task
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp310-cp310-macosx_10_9_x86_64.whl
+    params:
+      python_version: '3.10'
+      macos_deployment_target: '10.9'
+      arrow_s3: OFF
+    branch: actions-1862-github-wheel-macos-mavericks-cp310-amd64
+    commit: d650d5c31d64654b25608cd1fc5f2fbf35c46682
+  wheel-windows-cp38-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp38-cp38-win_amd64.whl
+    params:
+      python_version: '3.8'
+    branch: actions-1862-github-wheel-windows-cp38-amd64
+    commit: b360abec6b827bd7ca6703b773332bfb3d9191fe
+  wheel-manylinux2014-cp39-arm64: !Task
+    ci: travis
+    template: python-wheels/travis.linux.arm64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    params:
+      python_version: '3.9'
+      manylinux_version: '2014'
+    branch: actions-1862-travis-wheel-manylinux2014-cp39-arm64
+    commit: f5e350844a8295992ce6a51fa3778147853c424b
+  wheel-windows-cp39-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp39-cp39-win_amd64.whl
+    params:
+      python_version: '3.9'
+    branch: actions-1862-github-wheel-windows-cp39-amd64
+    commit: f7fcd5ce3eb76560f9994abef5ea28495f2d5bd7
+  wheel-macos-mavericks-cp37-amd64: !Task
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp37-cp37m-macosx_10_9_x86_64.whl
+    params:
+      python_version: '3.7'
+      macos_deployment_target: '10.9'
+      arrow_s3: OFF
+    branch: actions-1862-github-wheel-macos-mavericks-cp37-amd64
+    commit: dff077a69cd68747d311a2a4361496d088604660
+  wheel-manylinux2014-cp310-amd64: !Task
+    ci: github
+    template: python-wheels/github.linux.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    params:
+      python_version: '3.10'
+      manylinux_version: '2014'
+    branch: actions-1862-github-wheel-manylinux2014-cp310-amd64
+    commit: 3fd67273b3b36e55ddcec7b31de99ce90f5e7c20
+  wheel-macos-high-sierra-cp38-amd64: !Task
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp38-cp38-macosx_10_13_x86_64.whl
+    params:
+      python_version: '3.8'
+      macos_deployment_target: '10.13'
+      arrow_s3: ON
+    branch: actions-1862-github-wheel-macos-high-sierra-cp38-amd64
+    commit: a31e2357670dff42ded6d3928051ce1ca801dad6
+  wheel-macos-high-sierra-cp39-amd64: !Task
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp39-cp39-macosx_10_13_x86_64.whl
+    params:
+      python_version: '3.9'
+      macos_deployment_target: '10.13'
+      arrow_s3: ON
+    branch: actions-1862-github-wheel-macos-high-sierra-cp39-amd64
+    commit: 9aaea719bf7789ee903b3967762da1e53aa32e24
+  wheel-manylinux2010-cp38-amd64: !Task
+    ci: github
+    template: python-wheels/github.linux.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp38-cp38-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+    params:
+      python_version: '3.8'
+      manylinux_version: '2010'
+    branch: actions-1862-github-wheel-manylinux2010-cp38-amd64
+    commit: dc42fda2643390e9c8e16d394e904e99a8526c54
+  verify-rc-binaries-wheels-macos-11-amd64: !Task
+    ci: github
+    template: verify-rc/github.macos.arm64.yml
+    artifacts: []
+    params:
+      env:
+        PYTEST_ADDOPTS: -k 'not test_cancellation'
+      github_runner: self-hosted
+      arch_emulation: x86_64
+      target: wheels
+    branch: actions-1862-github-verify-rc-binaries-wheels-macos-11-amd64
+    commit: ab760d6682c8ef0d8686e0a324fca83dc91ca107
+  verify-rc-binaries-wheels-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: ubuntu
+
+    branch: actions-1862-github-verify-rc-binaries-wheels-linux-ubuntu-20.04-amd64
+    commit: 110c9c5d00858471acfa6aea2037ada1ecc34e24
+  verify-rc-binaries-wheels-windows: !Task
+    ci: github
+    template: verify-rc/github.win.yml
+    artifacts: []
+    params:
+      env:
+        PYARROW_TEST_GDB: OFF
+      script: verify-release-candidate-wheels.bat
+
+############################## Docker tests ##################################
+
+    branch: actions-1862-github-verify-rc-binaries-wheels-windows
+    commit: 08cb656f35b13e9b3b9c9ba5988ce22e19a26c5b
+  wheel-manylinux2014-cp37-amd64: !Task
+    ci: github
+    template: python-wheels/github.linux.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    params:
+      python_version: '3.7'
+      manylinux_version: '2014'
+    branch: actions-1862-github-wheel-manylinux2014-cp37-amd64
+    commit: 4852ab0791d489c105f4478f2be9ebe2755014f6
+  wheel-manylinux2010-cp39-amd64: !Task
+    ci: github
+    template: python-wheels/github.linux.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+    params:
+      python_version: '3.9'
+      manylinux_version: '2010'
+    branch: actions-1862-github-wheel-manylinux2010-cp39-amd64
+    commit: fce7a3046beac6b063a5cbc9bd2fa73101714aed
+  verify-rc-binaries-wheels-linux-almalinux-8-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: almalinux
+
+    branch: actions-1862-github-verify-rc-binaries-wheels-linux-almalinux-8-amd64
+    commit: 0cd73eb05e17c935eb8db1401365f9d2d3b70ce4
+  wheel-macos-big-sur-cp310-arm64: !Task
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp310-cp310-macosx_11_0_arm64.whl
+    params:
+      arch: arm64
+      arrow_simd_level: DEFAULT
+      python_version: '3.10'
+      macos_deployment_target: '11.0'
+    branch: actions-1862-github-wheel-macos-big-sur-cp310-arm64
+    commit: 24721f76b6c093e8535d57d86384c156aa4e0c61
+  wheel-manylinux2014-cp38-arm64: !Task
+    ci: travis
+    template: python-wheels/travis.linux.arm64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    params:
+      python_version: '3.8'
+      manylinux_version: '2014'
+    branch: actions-1862-travis-wheel-manylinux2014-cp38-arm64
+    commit: fa7d5a696c3ec0d8544ca11e17522d3c74d93f33
+  wheel-macos-mavericks-cp38-amd64: !Task
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp38-cp38-macosx_10_9_x86_64.whl
+    params:
+      python_version: '3.8'
+      macos_deployment_target: '10.9'
+      arrow_s3: OFF
+    branch: actions-1862-github-wheel-macos-mavericks-cp38-amd64
+    commit: 6b13fb98ca3ff2ceb79e1bb5530901ab345a49e7
+  wheel-manylinux2014-cp38-amd64: !Task
+    ci: github
+    template: python-wheels/github.linux.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    params:
+      python_version: '3.8'
+      manylinux_version: '2014'
+    branch: actions-1862-github-wheel-manylinux2014-cp38-amd64
+    commit: ee6258b546786ebf0bfcc5d0b992fb5b4a10a7a1
+  wheel-manylinux2010-cp310-amd64: !Task
+    ci: github
+    template: python-wheels/github.linux.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl
+    params:
+      python_version: '3.10'
+      manylinux_version: '2010'
+    branch: actions-1862-github-wheel-manylinux2010-cp310-amd64
+    commit: b0793a83f1dedae215e237e3522034bbc2516822
+  verify-rc-binaries-wheels-linux-conda-latest-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: conda
+
+    branch: actions-1862-github-verify-rc-binaries-wheels-linux-conda-latest-amd64
+    commit: 9f4b73a5a4d7661596309a6166e7d3fd6cd2f09a
+  wheel-manylinux2014-cp37-arm64: !Task
+    ci: travis
+    template: python-wheels/travis.linux.arm64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp37-cp37m-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    params:
+      python_version: '3.7'
+      manylinux_version: '2014'
+    branch: actions-1862-travis-wheel-manylinux2014-cp37-arm64
+    commit: 0d59cc4fc5e00170394fc4cfb43c62c6c6e271fd
+  wheel-manylinux2014-cp310-arm64: !Task
+    ci: travis
+    template: python-wheels/travis.linux.arm64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
+    params:
+      python_version: '3.10'
+      manylinux_version: '2014'
+    branch: actions-1862-travis-wheel-manylinux2014-cp310-arm64
+    commit: 4f2396bc641344d3b35e781a38cd52c053c0f56b
+  verify-rc-binaries-wheels-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: ubuntu
+
+    branch: actions-1862-github-verify-rc-binaries-wheels-linux-ubuntu-18.04-amd64
+    commit: 9faf3f15962114cfab32113a6903efcd50c09d6f
+  verify-rc-binaries-wheels-macos-11-arm64: !Task
+    ci: github
+    template: verify-rc/github.macos.arm64.yml
+    artifacts: []
+    params:
+      env:
+        PYTEST_ADDOPTS: -k 'not test_cancellation'
+      github_runner: self-hosted
+      arch_emulation: arm64
+      target: wheels
+
+  ######################## Windows verification ##############################
+
+    branch: actions-1862-github-verify-rc-binaries-wheels-macos-11-arm64
+    commit: 5ad379708d6128f4e5c6225e199dae12ab63c1ac
+  wheel-manylinux2014-cp39-amd64: !Task
+    ci: github
+    template: python-wheels/github.linux.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    params:
+      python_version: '3.9'
+      manylinux_version: '2014'
+    branch: actions-1862-github-wheel-manylinux2014-cp39-amd64
+    commit: fc22974b095c2c041258d780fa3e9706e6c30d4b
+  wheel-macos-big-sur-cp39-universal2: !Task
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp39-cp39-macosx_10_13_universal2.whl
+    params:
+      arch: universal2
+      # Universal2 builds for both rosetta and native, but we currently can't
+      # configure SIMD for both architectures at the same time
+      arrow_simd_level: NONE
+      python_version: '3.9'
+      macos_deployment_target: '10.13'
+    branch: actions-1862-github-wheel-macos-big-sur-cp39-universal2
+    commit: 356f7195b7ec0e34ecb96291aeeaaa03d152c6f5
+  wheel-macos-big-sur-cp39-arm64: !Task
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp39-cp39-macosx_11_0_arm64.whl
+    params:
+      arch: arm64
+      arrow_simd_level: DEFAULT
+      python_version: '3.9'
+      macos_deployment_target: '11.0'
+    branch: actions-1862-github-wheel-macos-big-sur-cp39-arm64
+    commit: c3e2359362f93f46da7e8b53ffca3da84ffd44d2
+  wheel-macos-big-sur-cp38-arm64: !Task
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp38-cp38-macosx_11_0_arm64.whl
+    params:
+      arch: arm64
+      arrow_simd_level: DEFAULT
+      python_version: '3.8'
+      macos_deployment_target: '11.0'
+
+    branch: actions-1862-github-wheel-macos-big-sur-cp38-arm64
+    commit: a3b0bb3ccb69401294c021278f06c34a1377b2e5
+  wheel-macos-big-sur-cp310-universal2: !Task
+    ci: github
+    template: python-wheels/github.osx.arm64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp310-cp310-macosx_10_13_universal2.whl
+    params:
+      arch: universal2
+      # Universal2 builds for both rosetta and native, but we currently can't
+      # configure SIMD for both architectures at the same time
+      arrow_simd_level: NONE
+      python_version: '3.10'
+      macos_deployment_target: '10.13'
+    branch: actions-1862-github-wheel-macos-big-sur-cp310-universal2
+    commit: 02f585f501b61d0efb8a6100a08dd03f2cbcbbf0
+  wheel-macos-high-sierra-cp310-amd64: !Task
+    ci: github
+    template: python-wheels/github.osx.amd64.yml
+    artifacts:
+    - pyarrow-8.0.0.dev426-cp310-cp310-macosx_10_13_x86_64.whl
+    params:
+      python_version: '3.10'
+      macos_deployment_target: '10.13'
+      arrow_s3: ON
+    branch: actions-1862-github-wheel-macos-high-sierra-cp310-amd64
+    commit: 5f0882ed7da5cad4ded00f6e8c09858300ba9940
+params: {}
+branch: actions-1862
