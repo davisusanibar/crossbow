@@ -1,0 +1,21 @@
+!Job
+target: !Target
+  head: a00113b83525dd74c9545475826296518a5ed176
+  email: unknown
+  branch: arrow-16069
+  remote: https://github.com/lidavidm/arrow.git
+  github_repo: lidavidm/arrow
+  version: 8.0.0.dev397
+  no_rc_version: 8.0.0.dev397
+  no_rc_semver_version: 8.0.0-dev397
+tasks:
+  python-sdist: !Task
+    ci: github
+    template: python-sdist/github.yml
+    artifacts:
+    - pyarrow-8.0.0.dev397.tar.gz
+    params: {}
+    branch: actions-1867-github-python-sdist
+    commit: 464ebc9dbcbbb4edb4422ac5b0d5150648c31447
+params: {}
+branch: actions-1867
