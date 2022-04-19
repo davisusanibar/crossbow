@@ -1,0 +1,381 @@
+!Job
+target: !Target
+  head: 1f48a2df5a86ec8131e449228437db530fb0f309
+  email: unknown
+  branch: cpp-target-include-path
+  remote: https://github.com/kou/arrow.git
+  github_repo: kou/arrow
+  version: 8.0.0.dev477
+  no_rc_version: 8.0.0.dev477
+  no_rc_semver_version: 8.0.0-dev477
+tasks:
+  verify-rc-source-python-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      target: python
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-python-linux-ubuntu-18.04-amd64
+    commit: 88d4a1f4ff1d860a53c931cf5f19574be1dcffc0
+  test-ubuntu-20.04-cpp-17: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      flags: -e CMAKE_ARGS=-DCMAKE_CXX_STANDARD=17
+      image: ubuntu-cpp
+
+    branch: actions-1870-github-test-ubuntu-20.04-cpp-17
+    commit: de616ca37043c606d386a0b8689460718a269483
+  test-ubuntu-20.04-cpp-14: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      flags: -e CMAKE_ARGS=-DCMAKE_CXX_STANDARD=14
+      image: ubuntu-cpp
+    branch: actions-1870-github-test-ubuntu-20.04-cpp-14
+    commit: f7fadb9aeddc04a018253336bbd4c133f3fb529e
+  verify-rc-binaries-jars-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: jars
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-binaries-jars-linux-ubuntu-20.04-amd64
+    commit: 2bbeda5470a27788ddc76bbfd4999e4e267abfbf
+  verify-rc-source-java-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      target: java
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-java-linux-ubuntu-18.04-amd64
+    commit: 9b8e909d422e3556a068d1b01b0251965e50589f
+  verify-rc-binaries-jars-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: jars
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-binaries-jars-linux-ubuntu-18.04-amd64
+    commit: 2bbeda5470a27788ddc76bbfd4999e4e267abfbf
+  verify-rc-source-js-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      target: js
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-js-linux-ubuntu-20.04-amd64
+    commit: 898bd01f37ca052e76febb54ce91553c861331b3
+  verify-rc-source-cpp-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      target: cpp
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-cpp-linux-ubuntu-18.04-amd64
+    commit: 601e12eb10dbee58fd4367983a19533f37233a5e
+  test-ubuntu-20.04-cpp-bundled: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      image: ubuntu-cpp-bundled
+
+    branch: actions-1870-github-test-ubuntu-20.04-cpp-bundled
+    commit: be5f378b58ada341fd9afa21871e23f3f0ab8e00
+  test-ubuntu-18.04-cpp-release: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 18.04
+      flags: -e ARROW_BUILD_TYPE=release
+      image: ubuntu-cpp
+
+    branch: actions-1870-github-test-ubuntu-18.04-cpp-release
+    commit: 7cbc5fb52f50dc64ec49b1faa378123f29f32e36
+  verify-rc-source-go-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      target: go
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-go-linux-ubuntu-20.04-amd64
+    commit: 075777277699d48f0376738210e9c221f8b56b7b
+  test-ubuntu-20.04-cpp: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      image: ubuntu-cpp
+    branch: actions-1870-github-test-ubuntu-20.04-cpp
+    commit: 5f3d61459bd83784d73f9929b46140c7ce137685
+  verify-rc-source-go-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      target: go
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-go-linux-ubuntu-18.04-amd64
+    commit: 13f6b50206e70f9b66825d0f51249ab9cbca50b6
+  verify-rc-binaries-wheels-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: ubuntu
+
+    branch: actions-1870-github-verify-rc-binaries-wheels-linux-ubuntu-18.04-amd64
+    commit: 0e3fd25c809547a46752d200831110d69257ea51
+  test-ubuntu-20.04-cpp-thread-sanitizer: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        # clang-tools and llvm version need to be synchronized so as
+        # to have the right llvm-symbolizer version
+        CLANG_TOOLS: 11
+        LLVM: 11
+        UBUNTU: 20.04
+      image: ubuntu-cpp-thread-sanitizer
+
+    branch: actions-1870-github-test-ubuntu-20.04-cpp-thread-sanitizer
+    commit: f34c776fda4b77bc9dc2ada82a0ef1886534c5ad
+  verify-rc-source-ruby-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      target: ruby
+      distro: ubuntu
+
+    branch: actions-1870-github-verify-rc-source-ruby-linux-ubuntu-20.04-amd64
+    commit: 5c551a2eb75d15c85fa33c903a6258e6c39999b1
+  test-ubuntu-18.04-r-sanitizer: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 18.04
+        R_PRUNE_DEPS: true
+      image: ubuntu-r-sanitizer
+
+    branch: actions-1870-azure-test-ubuntu-18.04-r-sanitizer
+    commit: 938e88adcd6400d023e7d4a946dac2422c0ed9f9
+  verify-rc-source-java-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      target: java
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-java-linux-ubuntu-20.04-amd64
+    commit: c2028e3f86d357a0fd9ff2a459f2b59bc9c338fc
+  verify-rc-source-js-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      target: js
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-js-linux-ubuntu-18.04-amd64
+    commit: 51416849033fd5161e322108e5c57644feac097d
+  verify-rc-source-csharp-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      target: csharp
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-csharp-linux-ubuntu-20.04-amd64
+    commit: 294561f246c7a910a969b920cb08f781781a3303
+  test-ubuntu-18.04-cpp-static: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 18.04
+      flags: -e ARROW_BUILD_SHARED=OFF -e ARROW_BUILD_STATIC=ON -e ARROW_TEST_LINKAGE=static
+      image: ubuntu-cpp
+
+    branch: actions-1870-github-test-ubuntu-18.04-cpp-static
+    commit: d8c60afd29854a6ab5f4d60f2ca107f169663176
+  verify-rc-source-python-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      target: python
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-python-linux-ubuntu-20.04-amd64
+    commit: 1827f7b0c6f567bc7d619a70152be2dbc8688c8d
+  verify-rc-source-ruby-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      target: ruby
+      distro: ubuntu
+
+    branch: actions-1870-github-verify-rc-source-ruby-linux-ubuntu-18.04-amd64
+    commit: 7279c52f298cc48ad66b7fc4ce5d9d8bfa936607
+  test-ubuntu-20.04-python-3: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 20.04
+      image: ubuntu-python
+
+    branch: actions-1870-azure-test-ubuntu-20.04-python-3
+    commit: ca9e4c1ec37e1a4883ce7ec6427939c641d03b12
+  amazon-linux-2-amd64: !Task
+    ci: github
+    template: linux-packages/github.linux.amd64.yml
+    artifacts:
+    - apache-arrow-release-8.0.0.dev477-1.[a-z0-9]+.noarch.rpm
+    - apache-arrow-release-8.0.0.dev477-1.[a-z0-9]+.src.rpm
+    - arrow-dataset-devel-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-devel-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-doc-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-glib-libs-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-dataset-libs-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-debuginfo-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-devel-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-devel-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-doc-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-glib-libs-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-libs-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - arrow-8.0.0.dev477-1.[a-z0-9]+.src.rpm
+    - parquet-devel-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-devel-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-doc-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-glib-libs-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - parquet-libs-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - plasma-devel-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - plasma-glib-devel-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - plasma-glib-doc-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - plasma-glib-libs-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - plasma-libs-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    - plasma-store-server-8.0.0.dev477-1.[a-z0-9]+.[a-z0-9_]+.rpm
+    params:
+      target: amazon-linux-2
+      task_namespace: yum
+      upload_extensions:
+      - .rpm
+    branch: actions-1870-github-amazon-linux-2-amd64
+    commit: d0d25b4616ccc5ae916eb7a2ecb93970e7f8e932
+  verify-rc-source-integration-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      target: integration
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-integration-linux-ubuntu-18.04-amd64
+    commit: bf69513c9b73b5c8a277efa6e408b002e961e267
+  verify-rc-source-csharp-linux-ubuntu-18.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      target: csharp
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-csharp-linux-ubuntu-18.04-amd64
+    commit: 12f1cc2a7c97a925bec591c7663e720750be5b38
+  verify-rc-source-cpp-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      target: cpp
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-cpp-linux-ubuntu-20.04-amd64
+    commit: 71572219a076aa6b065db4349dacf97cc0caadcc
+  verify-rc-binaries-wheels-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      target: wheels
+      distro: ubuntu
+
+    branch: actions-1870-github-verify-rc-binaries-wheels-linux-ubuntu-20.04-amd64
+    commit: 2d82ee638e5e3e679f5ee801201c80dea62624c0
+  test-ubuntu-18.04-cpp: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '18.04'
+      image: ubuntu-cpp
+    branch: actions-1870-github-test-ubuntu-18.04-cpp
+    commit: ffc77e740a6591b7d614251a7c19796c627a688b
+  verify-rc-source-integration-linux-ubuntu-20.04-amd64: !Task
+    ci: github
+    template: verify-rc/github.linux.amd64.docker.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: '20.04'
+      target: integration
+      distro: ubuntu
+    branch: actions-1870-github-verify-rc-source-integration-linux-ubuntu-20.04-amd64
+    commit: 701fe655372c5a82ea2e8b14fdfb185ba82f77ea
+params: {}
+branch: actions-1870
