@@ -1,0 +1,24 @@
+!Job
+target: !Target
+  head: eb91ce04803e491d2248d02f916a0ebb4d806872
+  email: unknown
+  branch: ARROW-15678
+  remote: https://github.com/jonkeane/arrow.git
+  github_repo: jonkeane/arrow
+  version: 8.0.0.dev473
+  no_rc_version: 8.0.0.dev473
+  no_rc_semver_version: 8.0.0-dev473
+tasks:
+  test-r-minsizerel: !Task
+    ci: github
+    template: r/github.macos-linux.local.yml
+    artifacts: []
+    params:
+      env:
+        CMAKE_BUILD_TYPE: MinSizeRel
+        ARROW_R_DEV: true
+
+    branch: actions-1877-github-test-r-minsizerel
+    commit: b406cf504f0338c778c00bec2c83cb4333f3d29b
+params: {}
+branch: actions-1877
