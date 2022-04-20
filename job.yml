@@ -1,0 +1,22 @@
+!Job
+target: !Target
+  head: bf68edde42072abf57d438f478d1970e00799a8f
+  email: unknown
+  branch: sasha_tpch_fix
+  remote: https://github.com/save-buffer/arrow.git
+  github_repo: save-buffer/arrow
+  version: 8.0.0.dev407
+  no_rc_version: 8.0.0.dev407
+  no_rc_semver_version: 8.0.0-dev407
+tasks:
+  test-conda-cpp-valgrind: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      image: conda-cpp-valgrind
+
+    branch: actions-1889-azure-test-conda-cpp-valgrind
+    commit: dabaa99601173fb4a6cc68f43c4b8ea0893d21f7
+params: {}
+branch: actions-1889
