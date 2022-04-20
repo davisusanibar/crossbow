@@ -1,0 +1,28 @@
+!Job
+target: !Target
+  head: 2c7708717f803fa1edc9fdf3381144484f309d3d
+  email: unknown
+  branch: ARROW-16233
+  remote: https://github.com/AlenkaF/arrow.git
+  github_repo: AlenkaF/arrow
+  version: 8.0.0.dev458
+  no_rc_version: 8.0.0.dev458
+  no_rc_semver_version: 8.0.0-dev458
+tasks:
+  test-conda-python-3.8-hypothesis: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.8
+        HYPOTHESIS_PROFILE: ci
+        PYARROW_TEST_HYPOTHESIS: ON
+        # limit to execute hypothesis tests only
+        PYTEST_ARGS: -m hypothesis
+      image: conda-python-pandas
+
+    branch: actions-1881-github-test-conda-python-3.8-hypothesis
+    commit: fc63c9e02f3f8066609dac6c441102873ac5173e
+params: {}
+branch: actions-1881
