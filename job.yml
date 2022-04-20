@@ -1,0 +1,49 @@
+!Job
+target: !Target
+  head: c41670f33d322c644f60f4f2bfb2f2d71643128b
+  email: unknown
+  branch: ARROW-16233
+  remote: https://github.com/AlenkaF/arrow.git
+  github_repo: AlenkaF/arrow
+  version: 8.0.0.dev456
+  no_rc_version: 8.0.0.dev456
+  no_rc_semver_version: 8.0.0-dev456
+tasks:
+  wheel-windows-cp39-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev456-cp39-cp39-win_amd64.whl
+    params:
+      python_version: '3.9'
+    branch: actions-1880-github-wheel-windows-cp39-amd64
+    commit: 119802fde568633f88b06b29a0dc2c47584dfd9c
+  wheel-windows-cp310-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev456-cp310-cp310-win_amd64.whl
+    params:
+      python_version: '3.10'
+    branch: actions-1880-github-wheel-windows-cp310-amd64
+    commit: b1ae45b05017c3eae8ecf74c58a194460938f1ad
+  wheel-windows-cp38-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev456-cp38-cp38-win_amd64.whl
+    params:
+      python_version: '3.8'
+    branch: actions-1880-github-wheel-windows-cp38-amd64
+    commit: 55fd77be36542c103a9f6432370c51d47f234a84
+  wheel-windows-cp37-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev456-cp37-cp37m-win_amd64.whl
+    params:
+      python_version: '3.7'
+    branch: actions-1880-github-wheel-windows-cp37-amd64
+    commit: bc6ef60539d1b8e5ddfa2e181a45f02bdad63ef9
+params: {}
+branch: actions-1880
