@@ -1,0 +1,25 @@
+!Job
+target: !Target
+  head: 9ee775debf072f9e2376f2abb8584881f5a1e254
+  email: jkeane@gmail.com
+  branch: ARROW-14638-ccache
+  remote: https://github.com/jonkeane/arrow.git
+  github_repo: jonkeane/arrow
+  version: 8.0.0.dev484
+  no_rc_version: 8.0.0.dev484
+  no_rc_semver_version: 8.0.0-dev484
+tasks:
+  test-r-rhub-debian-gcc-release-custom-ccache: !Task
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rhub
+      r_image: debian-gcc-release
+      r_tag: latest
+      r_custom_ccache: true
+
+    branch: build-632-azure-test-r-rhub-debian-gcc-release-custom-ccache
+    commit: 7bcf07019f5045acfabff0ccd1fd17c802e72e83
+params: {}
+branch: build-632
