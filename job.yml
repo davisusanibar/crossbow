@@ -1,0 +1,36 @@
+!Job
+target: !Target
+  head: 07412519f959385110f3d38ad152bb625900b771
+  email: unknown
+  branch: ARROW-16261-hdfs-delete-dir-contents
+  remote: https://github.com/pitrou/arrow.git
+  github_repo: pitrou/arrow
+  version: 8.0.0.dev479
+  no_rc_version: 8.0.0.dev479
+  no_rc_semver_version: 8.0.0-dev479
+tasks:
+  test-conda-python-3.7-hdfs-2.9.2: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.7
+        HDFS: 2.9.2
+      image: conda-python-hdfs
+    branch: actions-1893-github-test-conda-python-3.7-hdfs-2.9.2
+    commit: 5dc222a6a9cc0e0fc07660960433ab3106b1ddda
+  test-conda-python-3.7-hdfs-3.2.1: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.7
+        HDFS: 3.2.1
+      image: conda-python-hdfs
+
+    branch: actions-1893-github-test-conda-python-3.7-hdfs-3.2.1
+    commit: ba9a92c69c855124bae25c94b054e73d29a36add
+params: {}
+branch: actions-1893
