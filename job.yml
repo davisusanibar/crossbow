@@ -1,0 +1,22 @@
+!Job
+target: !Target
+  head: a281ad8542fb35aa418bc2eefc8f63a2ef64b8cb
+  email: unknown
+  branch: bugfix/ARROW-16264--valgrind-timeout-hash-join-node-test
+  remote: https://github.com/westonpace/arrow.git
+  github_repo: westonpace/arrow
+  version: 8.0.0.dev410
+  no_rc_version: 8.0.0.dev410
+  no_rc_semver_version: 8.0.0-dev410
+tasks:
+  test-conda-cpp-valgrind: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      image: conda-cpp-valgrind
+
+    branch: actions-1900-azure-test-conda-cpp-valgrind
+    commit: 1d7bbf7fe14a574df1bc14c7de806a2cdce854da
+params: {}
+branch: actions-1900
