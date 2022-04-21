@@ -1,0 +1,37 @@
+!Job
+target: !Target
+  head: 1d580f5a2704b881174a5a95fdf8926bc0a563d7
+  email: unknown
+  branch: MINOR-guard-flight
+  remote: https://github.com/assignUser/arrow.git
+  github_repo: assignUser/arrow
+  version: 8.0.0.dev487
+  no_rc_version: 8.0.0.dev487
+  no_rc_semver_version: 8.0.0-dev487
+tasks:
+  test-r-rstudio-r-base-4.1-opensuse42: !Task
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.1-opensuse42
+
+  # This is with R built with --enable-lto
+  # CRAN also does R CMD INSTALL --use-LTO
+  # which overrides the UseLTO field in r/DESCRIPTION
+    branch: actions-1901-azure-test-r-rstudio-r-base-4.1-opensuse42
+    commit: 76010dde3480527052df588ef969aa0374742d49
+  test-r-rstudio-r-base-4.1-opensuse15: !Task
+    ci: azure
+    template: r/azure.linux.yml
+    artifacts: []
+    params:
+      r_org: rstudio
+      r_image: r-base
+      r_tag: 4.1-opensuse15
+    branch: actions-1901-azure-test-r-rstudio-r-base-4.1-opensuse15
+    commit: d8509f065da9633811c81428f6bcd21906be3cdb
+params: {}
+branch: actions-1901
