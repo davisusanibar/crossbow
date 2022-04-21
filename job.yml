@@ -1,0 +1,24 @@
+!Job
+target: !Target
+  head: 0765e301d1ef7d1ac9871c5f575bd1e25da076e6
+  email: antoine@python.org
+  branch: ARROW-15678
+  remote: https://github.com/jonkeane/arrow.git
+  github_repo: jonkeane/arrow
+  version: 8.0.0.dev505
+  no_rc_version: 8.0.0.dev505
+  no_rc_semver_version: 8.0.0-dev505
+tasks:
+  test-r-minsizerel: !Task
+    ci: github
+    template: r/github.macos-linux.local.yml
+    artifacts: []
+    params:
+      env:
+        CMAKE_BUILD_TYPE: MinSizeRel
+        ARROW_R_DEV: true
+
+    branch: minsizerel-0-github-test-r-minsizerel
+    commit: fb0d9968f5e5d69eb68a05952d787c4a6a40fce8
+params: {}
+branch: minsizerel-0
