@@ -1,0 +1,51 @@
+!Job
+target: !Target
+  head: 957b994714b04225c04ad890c42e8b87b0d347c4
+  email: unknown
+  branch: sasha_tpch_fix
+  remote: https://github.com/save-buffer/arrow.git
+  github_repo: save-buffer/arrow
+  version: 8.0.0.dev408
+  no_rc_version: 8.0.0.dev408
+  no_rc_semver_version: 8.0.0-dev408
+tasks:
+  test-ubuntu-20.04-cpp-thread-sanitizer: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        # clang-tools and llvm version need to be synchronized so as
+        # to have the right llvm-symbolizer version
+        CLANG_TOOLS: 11
+        LLVM: 11
+        UBUNTU: 20.04
+      image: ubuntu-cpp-thread-sanitizer
+
+    branch: actions-1894-github-test-ubuntu-20.04-cpp-thread-sanitizer
+    commit: e4cae80881f091c00a4399bd9c572a52145ebe1d
+  test-ubuntu-18.04-r-sanitizer: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        UBUNTU: 18.04
+        R_PRUNE_DEPS: true
+      image: ubuntu-r-sanitizer
+
+    branch: actions-1894-azure-test-ubuntu-18.04-r-sanitizer
+    commit: ac315c13631eee9138c5cfca9990cb5b0919017a
+  test-fedora-r-clang-sanitizer: !Task
+    ci: azure
+    template: docker-tests/azure.linux.yml
+    artifacts: []
+    params:
+      env:
+        R_PRUNE_DEPS: true
+      image: fedora-r-clang-sanitizer
+
+    branch: actions-1894-azure-test-fedora-r-clang-sanitizer
+    commit: ef42f2297898526b5511ddee92d31456773383be
+params: {}
+branch: actions-1894
