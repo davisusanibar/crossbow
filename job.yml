@@ -1,0 +1,49 @@
+!Job
+target: !Target
+  head: dce8fcf696a3dbdc85814b2d4d6d8720a6718df9
+  email: unknown
+  branch: ARROW-16198-bump-vcpkg
+  remote: https://github.com/assignUser/arrow.git
+  github_repo: assignUser/arrow
+  version: 8.0.0.dev506
+  no_rc_version: 8.0.0.dev506
+  no_rc_semver_version: 8.0.0-dev506
+tasks:
+  wheel-windows-cp38-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev506-cp38-cp38-win_amd64.whl
+    params:
+      python_version: '3.8'
+    branch: actions-1904-github-wheel-windows-cp38-amd64
+    commit: 8495649a7d35c4a6c2bbe7bb721398564d8973b6
+  wheel-windows-cp39-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev506-cp39-cp39-win_amd64.whl
+    params:
+      python_version: '3.9'
+    branch: actions-1904-github-wheel-windows-cp39-amd64
+    commit: ed1466bf756bd3ae27e39b024d3186003675af18
+  wheel-windows-cp310-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev506-cp310-cp310-win_amd64.whl
+    params:
+      python_version: '3.10'
+    branch: actions-1904-github-wheel-windows-cp310-amd64
+    commit: d5a653d67b98f708099b233dceb59c10c20ae3e1
+  wheel-windows-cp37-amd64: !Task
+    ci: github
+    template: python-wheels/github.windows.yml
+    artifacts:
+    - pyarrow-8.0.0.dev506-cp37-cp37m-win_amd64.whl
+    params:
+      python_version: '3.7'
+    branch: actions-1904-github-wheel-windows-cp37-amd64
+    commit: bc24d475372492fd4fb659dcc7ea7cb510315492
+params: {}
+branch: actions-1904
