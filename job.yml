@@ -1,0 +1,25 @@
+!Job
+target: !Target
+  head: 8ccdbe2ff162f1e7dedbf07f536c829c59ac8bb1
+  email: unknown
+  branch: ARROW-16262
+  remote: https://github.com/raulcd/arrow.git
+  github_repo: raulcd/arrow
+  version: 8.0.0.dev489
+  no_rc_version: 8.0.0.dev489
+  no_rc_semver_version: 8.0.0-dev489
+tasks:
+  test-conda-python-3.7-kartothek-latest: !Task
+    ci: github
+    template: docker-tests/github.linux.yml
+    artifacts: []
+    params:
+      env:
+        PYTHON: 3.7
+        KARTOTHEK: latest
+      flags: --no-leaf-cache
+      image: conda-python-kartothek
+    branch: actions-1903-github-test-conda-python-3.7-kartothek-latest
+    commit: 7c77cc12d577682d8ebb73ce0d37fdc051c690ef
+params: {}
+branch: actions-1903
